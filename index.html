@@ -78,7 +78,7 @@
             canvas.toBlob( (blob) => {
                 const shareImg = new File([blob], 'save.png', {type: 'image/png'})
                 let link = document.getElementById("btn");
-      			link.href= url;
+      			link.href= link;
       			link.download = fileName;
             })
     
