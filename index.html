@@ -62,7 +62,6 @@
     
     textBox.addEventListener("input", () => {
         drawText(textBox.value);
-        save();
     })
     
     function drawText(text) {
@@ -76,12 +75,12 @@
     }
     
     function save(){
-            canvas.toBlob( (blob) => {
-                const shareImg = new File([blob], 'save.png', {type: 'image/png'})
-                let link = document.getElementById("btn");
-      			link.href= shareImg;
-      			link.download = "OZAKI_FUNCARD.png";
-            })
+            let link = document.getElementById("btn");
+            var image = canvas.toDataURL();
+      		link.href= image;
+      		link.download = "OZAKI_FUNCARD.png";
+
+      		link.click();
     
     }
   </script>
