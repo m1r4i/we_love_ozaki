@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>尾崎ファンカード発行機</title>
+  <style>
+    @font-face {
+        font-family: 'main';
+        src: url('main.ttf');
+    }
+    
+    body{
+    	font-family: main;
+    }
+    
+    #text-box {
+        width: 600px;
+        padding: 10px 10px; 
+        font-size: 16px;
+        border-radius: 3px;
+        box-sizing: border-box;
+    }
+    
+    div {
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    
+    #btn {
+        box-sizing: border-box;
+        padding: 10px 20px;
+        background: royalblue;
+        color: white;
+        cursor: pointer; 
+        transition: 100ms
+    }
+    
+    #btn:active {
+        color: royalblue;
+        background: white;
+        border: solid 1px royalblue;
+    }
+  </style>
+</head>
+<body>
+  <div> <canvas id="cv" width="1066" height="703" style="width: 60%"></canvas> </div>
+  <div> <input id="text-box" type="text" placeholder="お名前をどうぞ!"> </div>
+  <div> <a id="btn" onclick="save()">Save</a>
+    <h3 style="color:#8c8c8c;">※みんなの尾崎さんなので会員番号はみんな仲良くNo.1です</h3>
+  </div>
+  <script>
+    const textBox = document.getElementById("text-box")
+    
+    const bgImg = new Image()
+    bgImg.src = "material.png"
+    
+    const canvas = document.getElementById("cv")
+    const context = canvas.getContext("2d")
+    
+    bgImg.onload = () => {
+        context.drawImage(bgImg, 0, 0)
+    }
+    
+    textBox.addEventListener("input", () => {
+        drawText(textBox.value)
+    })
+    
+    function drawText(text) {
+        context.clearRect(0, 0, canvas.width, canvas.height)    
+        context.drawImage(bgImg, 0, 0)                          
+        context.fillStyle = 'black'                             
+        context.font = "40px 'main'"                     
+        context.textAlign = "center"                            
+        context.textBaseline = "middle"                         
+        context.fillText(text, 670, 330, 450);                  
+    }
+    
+    function save(){
+            canvas.toBlob( (blob) => {
+                const shareImg = new File([blob], 'save.png', {type: 'image/png'})
+                let link = document.getElementById("btn");
+      			link.href= url;
+      			link.download = fileName;
+            })
+    
+    }
+  </script>
+</body>
+</html>
