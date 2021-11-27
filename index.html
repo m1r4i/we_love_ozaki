@@ -61,7 +61,8 @@
     }
     
     textBox.addEventListener("input", () => {
-        drawText(textBox.value)
+        drawText(textBox.value);
+        save();
     })
     
     function drawText(text) {
@@ -80,22 +81,9 @@
                 let link = document.getElementById("btn");
       			link.href= link;
       			link.download = "OZAKI_FUNCARD.png";
-				triggerEvent(link, 'click');
             })
     
     }
-    function triggerEvent(element, event) {
-   if (document.createEvent) {
-       // IE以外
-       var evt = document.createEvent("HTMLEvents");
-       evt.initEvent(event, true, true ); // event type, bubbling, cancelable
-       return element.dispatchEvent(evt);
-   } else {
-       // IE
-       var evt = document.createEventObject();
-       return element.fireEvent("on"+event, evt)
-   }
-}
   </script>
 </body>
 </html>
